@@ -1,0 +1,50 @@
+---
+title: "Join dalam R"
+author: "I Nyoman Sweta"
+date: "1/28/2022"
+output: html_document
+---
+
+```{r}
+df_produk<-data.frame(produkKode=c('P001','P002','P003','P004','P005'),
+                produkNama=c('Nasi Goreng','Nasi Lawar','Es Daluman','Plecing Kangkung','Pepaya'),
+                kategoriID=c(1,1,2,1,4))
+df_produk
+```
+
+```{r}
+df_kategori<-data.frame(kategoriID=c(1,2,3),
+                kategoriNama=c("Makanan","Minuman","Snack"))
+df_kategori
+```
+```{r}
+#INNER JOIN
+df_gabung<-merge(x = df_produk, y = df_kategori,  by =("kategoriID"))
+df_gabung
+```
+```{r}
+#LEFT JOIN
+df_gabung<-merge(x = df_produk, y = df_kategori,  by =("kategoriID"),all.x=TRUE)
+df_gabung
+```
+```{r}
+#RIGHT JOIN
+df_gabung<-merge(x = df_produk, y = df_kategori,  by =("kategoriID"),all.y=TRUE)
+df_gabung
+```
+
+
+```{r}
+library(dplyr)
+df_gabung= df_produk %>% inner_join(df_kategori,by="kategoriID")
+df_gabung
+```
+```{r}
+df_gabung= df_produk %>% left_join(df_kategori,by="kategoriID")
+df_gabung
+```
+```{r}
+df_gabung= df_produk %>% right_join(df_kategori,by="kategoriID")
+df_gabung
+```
+
